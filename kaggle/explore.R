@@ -1,4 +1,6 @@
 library(ggplot2)
+library(dplyr)
 d<-read.csv("covid_19_data.csv")
 p<-ggplot(d, aes(x=ObservationDate, y=Confirmed, color=Country.Region))
-p1<-p+geom_point()
+p1<-p+geom_point()+facet_wrap(~Country.Region)
+ggsave("confirmed_cases_by_country.pdf", p1)
